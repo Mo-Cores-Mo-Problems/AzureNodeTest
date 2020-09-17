@@ -28,8 +28,11 @@ jobs:
       uses: actions/github-script@v3.0.0
       with:
         # The script to run
-        script: var x = 1;
-            
+        script: |
+          const diff_url = https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user
+          const result = await github.request(diff_url)
+          console.log(result)
+          return result
         # The GitHub token used to create an authenticated client
         # github-token: # optional, default is ${{ github.token }}
         # Whether to tell the GitHub client to log details of its requests
