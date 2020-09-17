@@ -49,6 +49,9 @@ jobs:
         # result-encoding: # optional, default is json
     - name: Response Check
       run: |
+        echo ${{steps.output-set.outputs.result.data.message}}
+        exit 0
+        
         if [[ "${{steps.output-set.outputs.result.data.message}}" != "healthcheck" ]]; then
           echo Recieved: message = "${{steps.output-set.outputs.result.data.message}}
           exit 1
