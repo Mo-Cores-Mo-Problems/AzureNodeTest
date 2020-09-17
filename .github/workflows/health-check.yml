@@ -28,17 +28,7 @@ jobs:
       uses: actions/github-script@v3.0.0
       with:
         # The script to run
-        script: |
-            function httpGet(theUrl)
-            {
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-                xmlHttp.send( null );
-                return xmlHttp.responseText;
-            }
-            
-            var response = httpGet(https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user);
-            repsonse;
+        script: var x = 1;
             
         # The GitHub token used to create an authenticated client
         # github-token: # optional, default is ${{ github.token }}
