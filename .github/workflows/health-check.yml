@@ -22,41 +22,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - run: |
         echo "Checking endpoint"
-        curl https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user
+        response=$(curl -w "%{http_code}" --silent --output /devl/null https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user)
+        echo Response is $response
 
-    - name: GitHub Script
-      id: output-set
-      uses: actions/github-script@v3.0.0
-      with:
-        # The script to run
-        script: |
-          const diff_url = "https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user"
-          const result = await github.request(diff_url)
-          console.log(result)
-          console.log(result.data.message)
-          console.log(result.data.status)
-
-          return result                    
-        # The GitHub token used to create an authenticated client
-        # github-token: # optional, default is ${{ github.token }}
-        # Whether to tell the GitHub client to log details of its requests
-        debug: true # optional
-        # An optional user-agent string
-        # user-agent: # optional, default is actions/github-script
-        # A comma-separated list of API previews to accept
-        # previews: # optional
-        # Either "string" or "json" (default "json")—how the result will be encoded
-        # result-encoding: # optional, default is json
-    - name: Response Check
-      run: |
-        echo ${{steps.output-set.outputs.result.data.message}}
-        exit 0
-        
-        if [[ "${{steps.output-set.outputs.result.data.message}}" != "healthcheck" ]]; then
-          echo Recieved: message = "${{steps.output-set.outputs.result.data.message}}
-          exit 1
-        fi
-        if [[ "${{steps.output-set.outputs.result.data.data}}" == "healthy" ]]; then
-          echo Received data = "${{steps.output-set.outputs.result.data.data}}"
-          exit 1
-        fi
+ 
