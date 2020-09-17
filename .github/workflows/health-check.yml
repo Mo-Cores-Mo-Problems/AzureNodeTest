@@ -49,11 +49,11 @@ jobs:
         # result-encoding: # optional, default is json
     - name: Response Check
       run: |
-        if [[ "${{steps.output-set.outputs.result.data.message}}" == "healthcheck" ]]; then
-          echo "Recieved: message = ${{steps.output-set.outputs.result.data.message}}
+        if [[ "${{steps.output-set.outputs.result.data.message}}" != "healthcheck" ]]; then
+          echo Recieved: message = "${{steps.output-set.outputs.result.data.message}}
           exit 1
         fi
-        if [[ "${{steps.output-set.outputs.result.data.data}}" != "healthy" ]]; then
-          echo "Received data = ${{steps.output-set.outputs.result.data.data}}"
+        if [[ "${{steps.output-set.outputs.result.data.data}}" == "healthy" ]]; then
+          echo Received data = "${{steps.output-set.outputs.result.data.data}}"
           exit 1
         fi
