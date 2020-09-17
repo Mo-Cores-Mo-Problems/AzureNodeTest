@@ -21,13 +21,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - run: |
-        echo "Checking endpoint"
-        # response=$(curl -w "%{http_code}" --silent --output /devl/null https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user)
-        curl -w "%{http_code}" --silent http://www.bing.com
-        curl -w "%{http_code}" --silent --output /devl/null http://www.bing.com
-        curl -w "%{http_code}" --silent --output /devl/null https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user
-        
-        echo "Response is $response"
+        declare url="http://www.bing.com"
+        result=$(curl -i $url 2>/dev/null | grep HTTP/1.1)
+        echo $result
 
        
 
