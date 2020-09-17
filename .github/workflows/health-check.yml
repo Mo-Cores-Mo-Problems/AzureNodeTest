@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  health-check:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -32,7 +32,9 @@ jobs:
           const diff_url = "https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user"
           const result = await github.request(diff_url)
           console.log(result)
-          return result
+          console.log(result.data.message)
+          console.log(result.data.status)
+          return result                    
         # The GitHub token used to create an authenticated client
         # github-token: # optional, default is ${{ github.token }}
         # Whether to tell the GitHub client to log details of its requests
