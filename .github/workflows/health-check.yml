@@ -32,7 +32,7 @@ jobs:
         # Content Type
         # contentType: # optional, default is application/json
         # Request Body as JSON String
-        data: '{"message":"healthcheck","status":"healthy"}' # optional, default is {}
+        data: '{"message":"healthcheck","status":"not healthy"}' # optional, default is {}
         # Auth Username
         # username: # optional
         # Auth Password
