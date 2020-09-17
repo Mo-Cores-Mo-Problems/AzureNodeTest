@@ -25,16 +25,6 @@ jobs:
         response=$(curl -w "%{http_code}" --silent --output /devl/null https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user)
         echo "Response is $response"
 
-        if [ $response -eq 200 ] 
-        then
-            echo "Yay"
-            exit 0
-        fi
-
-        if [ $response -ne 200 ]
-        then
-            echo "Status was" $response
-            exit -1
-        fi
+       
 
  
