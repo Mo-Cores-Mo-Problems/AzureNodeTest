@@ -22,9 +22,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - run: |
         declare url="http://www.bing.com"
-        result=$(curl -i $url 2>/dev/null | grep HTTP/1.1)
+        result=$(curl -w "%{http_code}" -i $url 2>/dev/null | grep HTTP/1.1)
         echo $result
-
-       
+              
 
  
