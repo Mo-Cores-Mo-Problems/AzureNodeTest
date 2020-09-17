@@ -29,7 +29,7 @@ jobs:
       with:
         # The script to run
         script: |
-          const diff_url = https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user
+          const diff_url = "https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user"
           const result = await github.request(diff_url)
           console.log(result)
           return result
