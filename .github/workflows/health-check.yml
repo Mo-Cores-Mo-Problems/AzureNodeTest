@@ -31,7 +31,10 @@ jobs:
             exit 0
         fi
 
-        echo "Status was" $response
-        exit -1
+        if [ $response -ne 200 ]
+        then
+            echo "Status was" $response
+            exit -1
+        fi
 
  
