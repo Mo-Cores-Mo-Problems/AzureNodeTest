@@ -25,6 +25,7 @@ jobs:
         curl https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user
 
     - name: GitHub Script
+      id: output-set
       uses: actions/github-script@v3.0.0
       with:
         # The script to run
@@ -34,11 +35,7 @@ jobs:
           console.log(result)
           console.log(result.data.message)
           console.log(result.data.status)
-          
-          if (result.data.message == "healthcheck" || result.data.status != "healthy") {
-            exit -1
-          }
-          
+
           return result                    
         # The GitHub token used to create an authenticated client
         # github-token: # optional, default is ${{ github.token }}
@@ -50,3 +47,10 @@ jobs:
         # previews: # optional
         # Either "string" or "json" (default "json")—how the result will be encoded
         # result-encoding: # optional, default is json
+    - run: |
+        if [[ "${{steps.output-set.outputs.result.data.message}}" == "healthcheck" ]]; then
+          exit 1
+        fi
+        if [[ "${{steps.output-set.outputs.result.data.data}}" != "healthy" ]]; then
+          exit 1
+        fi
