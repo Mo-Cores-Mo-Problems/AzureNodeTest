@@ -23,3 +23,30 @@ jobs:
     - run: |
         echo "Checking endpoint"
         curl https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user
+
+    - name: GitHub Script
+      uses: actions/github-script@v3.0.0
+      with:
+        # The script to run
+        script: |
+            function httpGet(theUrl)
+            {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+                xmlHttp.send( null );
+                return xmlHttp.responseText;
+            }
+            
+            var response = httpGet(https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user);
+            repsonse;
+            
+        # The GitHub token used to create an authenticated client
+        # github-token: # optional, default is ${{ github.token }}
+        # Whether to tell the GitHub client to log details of its requests
+        debug: true # optional
+        # An optional user-agent string
+        # user-agent: # optional, default is actions/github-script
+        # A comma-separated list of API previews to accept
+        # previews: # optional
+        # Either "string" or "json" (default "json")—how the result will be encoded
+        # result-encoding: # optional, default is json
