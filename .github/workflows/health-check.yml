@@ -32,7 +32,7 @@ jobs:
         # Content Type
         # contentType: # optional, default is application/json
         # Request Body as JSON String
-        data: '{"message":"healthcheck","status":"not healthy"}' # optional, default is {}
+        # data: '{"message":"healthcheck","status":"not healthy"}' # optional, default is {}
         # Auth Username
         # username: # optional
         # Auth Password
@@ -45,3 +45,4 @@ jobs:
         # customHeaders: # optional
         # Prevent this Action to fail if the request respond without an response
         # preventFailureOnNoResponse: # optional
+        run: echo $ {{ response }} Hello
