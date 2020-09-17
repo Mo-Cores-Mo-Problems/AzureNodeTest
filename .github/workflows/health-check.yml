@@ -22,7 +22,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - run: |
         echo "Checking endpoint"
-        declare url="https://openhackvs44eql7userprofile-staging.azurewebsites.net/api/healthcheck/user"
+        declare url="https://openhackvs44eql7userprofile-staging.azurewebsites.net/asdfasdf"
         # result=$(curl -w "%{http_code}" -i $url 2>/dev/null | grep HTTP/1.1)
         result=$(curl --write-out '%{http_code}' --silent --output /dev/null $url)
         sleep 5
